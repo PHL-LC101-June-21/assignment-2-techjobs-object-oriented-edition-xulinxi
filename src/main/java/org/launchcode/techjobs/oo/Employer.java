@@ -10,7 +10,7 @@ public class Employer {
 
     public Employer() {
         id = nextId;
-        nextId++;
+        nextId++; // generating unique id
     }
 
     public Employer(String value) {
