@@ -22,6 +22,15 @@ public class Job {
         nextId++; // generating unique id
     }
 
+    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
+        this();
+        this.name = name;
+        this.employer = employer;
+        this.location = location;
+        this.positionType = positionType;
+        this.coreCompetency = coreCompetency;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -33,6 +42,25 @@ public class Job {
     @Override
     public int hashCode() {
         return Objects.hash(id, getName(), getEmployer(), getLocation(), getPositionType(), getCoreCompetency());
+    }
+
+    @Override
+    public String toString() {
+        final String NULL_MSG = "Data not available";
+        String id = String.valueOf(this.getId());
+        String name = String.valueOf(this.getName());
+        String employer = String.valueOf(this.getEmployer());
+        String location = String.valueOf(this.getLocation());
+        String positionType = String.valueOf(this.getPositionType());
+        String coreCompetency = String.valueOf(this.getCoreCompetency());
+
+        return "\nID: " + id + '\n' +
+                "Name: " + (!name.isEmpty() ? name : NULL_MSG) + '\n' +
+                "Employer: " + (!employer.isEmpty() ? employer : NULL_MSG) + '\n' +
+                "Location: " + (!location.isEmpty() ? location : NULL_MSG)  + '\n' +
+                "Position Type: " + (!positionType.isEmpty() ? positionType : NULL_MSG)  + '\n' +
+                "Core Competency: " + (!coreCompetency.isEmpty() ? coreCompetency : NULL_MSG)  +
+                '\n';
     }
 
     public String getName() {
@@ -75,14 +103,7 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
-    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
-        this();
-        this.name = name;
-        this.employer = employer;
-        this.location = location;
-        this.positionType = positionType;
-        this.coreCompetency = coreCompetency;
-    }
+
 
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
