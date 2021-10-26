@@ -13,16 +13,14 @@ public class Job {
     private PositionType positionType;
     private CoreCompetency coreCompetency;
 
-
     // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
-    //  other five fields. The second constructor should also call the first in order to initialize
-    //  the 'id' field.
-    public Job() {
+    //  other five fields.
+    public Job () {
         id = nextId;
-        nextId++; // generating unique id
+        nextId++;
     }
 
-    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
+    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency){
         this();
         this.name = name;
         this.employer = employer;
@@ -30,18 +28,20 @@ public class Job {
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
     }
+    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
+    //  match.
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Job)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Job job = (Job) o;
-        return id == job.id && Objects.equals(getName(), job.getName()) && Objects.equals(getEmployer(), job.getEmployer()) && Objects.equals(getLocation(), job.getLocation()) && Objects.equals(getPositionType(), job.getPositionType()) && Objects.equals(getCoreCompetency(), job.getCoreCompetency());
+        return id == job.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, getName(), getEmployer(), getLocation(), getPositionType(), getCoreCompetency());
+        return Objects.hash(id);
     }
 
     @Override
@@ -61,6 +61,13 @@ public class Job {
                 "Position Type: " + (!positionType.isEmpty() ? positionType : NULL_MSG)  + '\n' +
                 "Core Competency: " + (!coreCompetency.isEmpty() ? coreCompetency : NULL_MSG)  +
                 '\n';
+    }
+
+// TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
+    //  and id.
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -102,31 +109,4 @@ public class Job {
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
     }
-
-
-
-
-    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
-    //  match.
-
-    // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
-    //  and id.
-    public int getId() {
-        return id;
-    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
